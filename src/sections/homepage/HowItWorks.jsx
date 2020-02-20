@@ -1,0 +1,328 @@
+import React from 'react';
+import { SectionHeader, SectionMargins } from '../common/common';
+import styled from 'styled-components';
+import {
+  FlowWrapper,
+  FlowStep,
+  FlowStepImage,
+  FlowStepText,
+  FlowTransition,
+  FlowTransitionText,
+} from './flow';
+import Step1 from '../../images/howitworks1.svg';
+import Step2 from '../../images/howitworks2.svg';
+import Step3 from '../../images/howitworks3.svg';
+import Step4 from '../../images/howitworks4.svg';
+
+import syncDataSource from '../../images/sync-data-source.gif';
+import runQueries from '../../images/run-queries.gif';
+import connectRealTime from '../../images/connect-real-time.gif';
+
+const Wrapper = styled.div`
+  @media (min-width: 1024px) {
+    margin-top: -50px;
+  }
+`;
+
+const CustomSpacer = styled.div`
+  height: 15px;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const SectionSubHeader = styled.p`
+  font-size: 14px;
+  line-height: 21px;
+  text-align: left;
+  margin: 20px 0px;
+
+  // Tablet
+  @media (min-width: 768px) {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
+`;
+
+export const TrioHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 16px;
+  }
+`;
+
+export const TrioHeaderText = styled.div`
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
+export const TrioBody = styled.div`
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: -10px;
+  margin-bottom: 26px;
+  @media (min-width: 1024px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+`;
+
+const SyncDataSource = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  padding-top: 70px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row-reverse;
+  }
+`;
+
+const SyncDataSourceText = styled.div`
+  @media (min-width: 1024px) {
+    padding: 20px;
+    max-width: 50%;
+  }
+`;
+
+const SyncDataSourceImage = styled.div`
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(250, 250, 250);
+
+  @media (min-width: 1024px) {
+    margin: 20px;
+    max-width: 50%;
+  }
+`;
+
+const RunQueries = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  padding-top: 100px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+`;
+
+const RunQueriesText = styled.div`
+  @media (min-width: 1024px) {
+    padding: 20px;
+    max-width: 50%;
+  }
+`;
+
+const RunQueriesImage = styled.div`
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(250, 250, 250);
+
+  @media (min-width: 1024px) {
+    margin: 20px;
+    max-width: 50%;
+  }
+`;
+
+const ConnectRealTime = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 20px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row-reverse;
+  }
+`;
+
+const ConnectRealTimeText = styled.div`
+  @media (min-width: 1024px) {
+    padding: 20px;
+    max-width: 50%;
+  }
+`;
+
+const ConnectRealTimeImage = styled.div`
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(250, 250, 250);
+
+  @media (min-width: 1024px) {
+    margin: 20px;
+    max-width: 50%;
+  }
+`;
+
+const BulletSection = styled.ul`
+  list-style-type: disc !important;
+  text-align: left !important;
+  font-size: 14px !important;
+
+  .li {
+    font-size: 14px !important;
+  }
+`;
+
+const Bullet = styled.li`
+  font-size: 14px !important;
+  margin-bottom: 0px !important;
+  padding-left: 0px !important;
+
+  @media (min-width: 1024px) {
+    font-size: 16px !important;
+  }
+`;
+
+export class HowItWorks extends React.Component {
+  render() {
+    return (
+      <Wrapper>
+        <SectionMargins>
+          <CustomSpacer />
+          <SectionHeader>The Database That Indexes Everything</SectionHeader>
+
+          <SectionSubHeader>
+            Rockset automatically indexes all fields with Converged Indexing<sup>TM</sup>,
+            which combines the power of search and columnar indexes.
+            It offers the fastest way to search and analyze real-time data and serve live
+            dashboards and APIs.
+          </SectionSubHeader>
+
+          <FlowWrapper>
+            <FlowStep>
+              <FlowStepImage src={Step1} />
+              <FlowStepText>Data generated by users, sensors or applications</FlowStepText>
+            </FlowStep>
+
+            <FlowTransition>
+              <FlowTransitionText>raw data</FlowTransitionText>
+            </FlowTransition>
+
+            <FlowStep>
+              <FlowStepImage src={Step2} />
+              <FlowStepText>
+                Raw data captured in your stream, lake, or operational database
+              </FlowStepText>
+            </FlowStep>
+
+            <FlowTransition>
+              <FlowTransitionText>live sync</FlowTransitionText>
+            </FlowTransition>
+
+            <FlowStep>
+              <FlowStepImage src={Step3} />
+              <FlowStepText>Millisecond-latency SQL over TBs of raw data</FlowStepText>
+            </FlowStep>
+
+            <FlowTransition>
+              <FlowTransitionText>sql over rest</FlowTransitionText>
+            </FlowTransition>
+
+            <FlowStep>
+              <FlowStepImage src={Step4} />
+              <FlowStepText>Data-driven application or interactive dashboard</FlowStepText>
+            </FlowStep>
+          </FlowWrapper>
+
+          <SyncDataSource>
+            <SyncDataSourceImage>
+              <img src="/images/kafka-create.png" />
+            </SyncDataSourceImage>
+            <SyncDataSourceText>
+              <TrioHeader>
+                <TrioHeaderText>Streaming ingest</TrioHeaderText>
+              </TrioHeader>
+              <TrioBody>
+                <BulletSection>
+                  <Bullet>
+                    Low-latency inserts and updates from event streams and database change streams
+                  </Bullet>
+                  <Bullet>Schemaless ingestion of nested JSON, Avro, XML, CSV, and Parquet</Bullet>
+                  <Bullet>
+                    Exactly once semantics with timestamp-based handling of out-of-order events
+                  </Bullet>
+                </BulletSection>
+              </TrioBody>
+            </SyncDataSourceText>
+          </SyncDataSource>
+
+          <RunQueries>
+            <RunQueriesImage>
+              <img src="/images/kafka-query.png" />
+            </RunQueriesImage>
+            <RunQueriesText>
+              <TrioHeader>
+                <TrioHeaderText>Fast, powerful queries</TrioHeaderText>
+              </TrioHeader>
+              <TrioBody>
+                <BulletSection>
+                  <Bullet>Data stream is auto-schematized and queryable in seconds</Bullet>
+                  <Bullet>Millisecond-latency queries on TBs of data</Bullet>
+                  <Bullet>
+                    Developer APIs for powerful SQL aggregations, filtering, and joins
+                  </Bullet>
+                </BulletSection>
+              </TrioBody>
+            </RunQueriesText>
+          </RunQueries>
+
+          <ConnectRealTime>
+            <ConnectRealTimeImage>
+              <img src="/images/org-create.png" />
+            </ConnectRealTimeImage>
+            <ConnectRealTimeText>
+              <TrioHeader>
+                <TrioHeaderText>Built for performance in the cloud</TrioHeaderText>
+              </TrioHeader>
+              <TrioBody>
+                <BulletSection>
+                  <Bullet>
+                    All fields automatically indexed with Converged Indexing<sup>TM</sup>
+                  </Bullet>
+                  <Bullet>
+                    Scale ingest and query compute indepedently to guarantee low latency
+                  </Bullet>
+                  <Bullet>Auto-scaling instance types for the price-performance you need</Bullet>
+                </BulletSection>
+              </TrioBody>
+            </ConnectRealTimeText>
+          </ConnectRealTime>
+        </SectionMargins>
+      </Wrapper>
+    );
+  }
+}

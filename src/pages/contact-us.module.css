@@ -1,0 +1,87 @@
+.ContactUsSection {
+  padding: 2em 0 3em 0;
+  /* border-bottom styling borrowed from
+    `.bottom-footer-block` element
+  */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ContactUsCard {
+  border-radius: 5px;
+  border: 1px solid #dfdfdf;
+  max-width: 90%;
+  padding: 31px 23px;
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.2);
+  margin: -37em auto 0 auto;
+  background: white;
+  transition: padding 0.2s, margin 0.2s;
+}
+
+.ContactUsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactUsForm > .ContactUsFormHeading {
+  text-align: center;
+  font-size: 32px;
+  line-height: 48px;
+}
+
+.ContactUsForm > .ContactUsFormTextArea {
+  resize: none;
+}
+
+.ContactUsForm > .ContactUsFormSubmitButton {
+  width: 100%;
+  max-width: 280px;
+  margin: 24px auto 0 auto;
+  background-color: #33b354;
+}
+
+.ContactUsForm > .ContactUsFormSubmitButton:hover {
+  /* Hover state missing from design, style borrowed from
+    `.nav-link.with-color` element
+  */
+  background-color: #2f3338;
+}
+
+/* Breakpoint: Tablet */
+/* Note: We may benefit from adding a third breakpoint, things look kind
+   of squished on tablet
+*/
+@media screen and (min-width: 768px) {
+  .ContactUsSection {
+    padding: 4em 0 5em 0;
+  }
+
+  .ContactUsCard {
+    max-width: 85%;
+    padding: 40px 135px 50px 135px;
+    margin-top: -30em;
+  }
+
+  .ContactUsForm > .ContactUsFormHeading {
+    font-size: 39px;
+    line-height: 49px;
+  }
+
+  .ContactUsForm > .ContactUsFormFieldset {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem:last-child {
+    margin-left: 21px;
+  }
+
+  .ContactUsForm > .ContactUsFormSubmitButton {
+    margin-top: 32px;
+  }
+}

@@ -1,0 +1,77 @@
+.headerRight {
+  position: absolute;
+  top: 17px;
+  right: 0px;
+  z-index: 100;
+}
+
+.logoImage {
+  width: 150px;
+}
+
+.toggled {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .menuButton {
+    float: left !important;
+    margin-left: 10px !important;
+    margin-right: 0px !important;
+  }
+
+  .mobileSignUp {
+    padding: 13px 15px;
+    color: #fff;
+    background-color: #31b450;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    transition: background-color 200ms ease, border 200ms ease;
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    position: absolute;
+    top: 6px;
+    right: 10px;
+  }
+
+  .hideSignup {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobileSignUp {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .headerRight {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .navFullWidth {
+    position: absolute !important;
+    width: 100% !important;
+  }
+
+  .logoImage {
+    padding-left: 12px;
+    width: 150px;
+  }
+  .hideLogin {
+    display: none !important;
+  }
+
+  .hideSignup {
+    display: none !important;
+  }
+}

@@ -1,0 +1,447 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.image-4 {
+  max-width: 50%;
+  margin-left: 240px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .logo-block {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -5px;
+  }
+
+  .logo {
+    height: 50px !important;
+    margin-top: 6px !important;
+  }
+}
+
+.w-container {
+  position: relative;
+}
+
+.div-block-3 {
+  text-align: center;
+}
+
+.fade {
+  color: green !important;
+  opacity: 1;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+  transition: opacity 500ms ease 0s, transform 500ms ease 0s;
+}
+
+@media only screen and (min-width: 992px) {
+  .active-nav {
+    border-width: 0px 0px 3px !important;
+    border-color: #000 #000 #b75dda !important;
+    border-radius: 0px !important;
+  }
+}
+
+.rs-table {
+  width: 100% !important;
+}
+
+.rs-table code {
+  padding: 0 !important;
+  background-color: unset !important;
+}
+
+.rs-table thead {
+  background-color: #f4f7fb !important;
+}
+
+.rs-table:hover {
+  cursor: default !important;
+}
+
+.rs-table tbody tr:hover {
+  background-color: unset;
+}
+
+.light-footer-link {
+  font-size: 16px !important;
+}
+
+.white-footer-column {
+  padding-bottom: 0 !important;
+}
+
+code {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.legal-container p {
+  font-size: 15px;
+}
+
+.container ol {
+  list-style-type: decimal;
+}
+
+.container ul {
+  list-style-type: disc;
+}
+
+.feature-info-title {
+  text-align: left !important;
+}
+
+/* All of the below is meant to help scaffold the interactive section
+   and should be removed / replaced as soon as possible. Planning on
+   replacing the rows and cols implementations with Bootstrap. */
+
+.interactive-placeholder {
+  display: inline-block !important;
+  /*border: 1px solid black !important;*/
+  /*height: 300px !important;*/
+  vertical-align: top;
+}
+
+.interactive-placeholder-app {
+  margin-right: 20px !important;
+  width: calc(33.3% - 13.3px) !important;
+  display: inline-block !important;
+  /*border: 1px solid black !important;*/
+  height: 300px !important;
+  vertical-align: top;
+}
+
+.interactive-placeholder-app-last {
+  width: calc(33.3% - 13.3px) !important;
+  display: inline-block !important;
+  /*border: 1px solid black !important;*/
+  height: 300px !important;
+  vertical-align: top;
+}
+
+.interactive-placeholder-text {
+  /*margin-left: 20px !important;*/
+  /*width: calc(33.3% - 20px) !important;*/
+  display: inline-block !important;
+  /*border: 1px solid black !important;*/
+  /*height: 300px !important;*/
+  margin-bottom: 30px;
+  vertical-align: top;
+  /*padding-left: 10px;*/
+  padding-right: 10px;
+}
+
+.query-demo .type-wrap {
+  font-family: monospace, monospace;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.query-demo .bx--loading {
+  animation-duration: 300ms !important;
+}
+
+.w-nav {
+  padding: 6px 0px !important;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.25) !important;
+}
+
+.w-nav-menu {
+  margin-top: 10px !important;
+}
+
+.w-nav-button {
+  margin-right: 6px !important;
+}
+
+.cta-section {
+  padding: 24px 25px !important;
+}
+
+.hero-block-overlay.business-2 {
+  padding-top: 68px !important;
+  padding-bottom: 0px !important;
+}
+
+.subpage-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1 !important;
+}
+
+.page-subtitle {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.hero-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  max-width: unset !important;
+}
+
+.hero-block-overlay {
+  height: 30vh !important;
+  min-height: 100px !important;
+  padding-top: 25vh;
+}
+
+.hero-block-overlay .container {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-around;*/
+}
+
+.hero-main-title {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.blog-post-page-content h3 {
+  color: #333 !important;
+}
+
+.single-post-author-block {
+  margin-top: 0px !important;
+  margin-bottom: 20px !important;
+}
+
+.single-post-author-block img {
+  border-radius: 35px !important;
+}
+
+.addthis_inline_follow_toolbox {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+
+.post-author-line {
+  margin-top: 25px !important;
+  margin-bottom: 15px !important;
+}
+
+.post-author-name div p {
+  margin-left: 100px !important;
+}
+
+.code-switch-button:hover {
+  font-weight: bold !important;
+}
+
+.accessInput {
+  display: inline-block;
+  margin-bottom: 1px;
+  width: 14vw;
+  min-width: 200px;
+}
+
+.accessSubmit {
+  display: inline-block;
+  margin: 0 16px !important;
+  width: 200px;
+  background: #1a70b4;
+}
+
+.team-member-image {
+  width: 160px !important;
+  height: 160px !important;
+}
+
+.team-member-tag {
+  text-transform: none !important;
+  font-size: 13px !important;
+}
+
+.team-member-description {
+  font-size: 13px !important;
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+}
+
+#slot-machine-word {
+  width: 300px;
+}
+
+@media only screen and (max-width: 478px) {
+  .post-author-name div p {
+    margin-left: 60px !important;
+  }
+}
+
+@media only screen and (max-width: 478px) {
+  .blog-post-page-content {
+    margin-bottom: 1px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mobile {
+    display: block;
+  }
+
+  .desktop {
+    display: none;
+  }
+}
+
+.code-switch-button {
+  border-radius: 3px;
+  margin: 5px;
+  outline: none;
+}
+
+@media only screen and (min-width: 767px) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .pricing-tier-container .w-col-4 {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .w-nav-menu {
+    margin-top: 60px !important;
+    margin-bottom: -6px;
+  }
+
+  .get-started-button {
+    margin-left: 0px !important;
+    padding-left: 35px !important;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .accessInput {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .accessSubmit {
+    margin: 0 !important;
+  }
+
+  .homepage .feature-info-row {
+    margin-top: 25px;
+    margin-bottom: -25px;
+  }
+
+  .demo-header {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+  }
+
+  .demo-data-description {
+    margin-bottom: 20px !important;
+  }
+
+  .interactive-placeholder-text {
+    margin-bottom: 0px;
+  }
+
+  .home-cta-blog {
+    text-align: center;
+  }
+
+  .code-switch-button {
+    margin: 5px 0px;
+  }
+
+  .query-code {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
+
+  .w-nav-menu {
+    margin-top: 47px !important;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .long-feature-block.title-only {
+    padding-left: 0px !important;
+  }
+
+  .transparant-menu-button {
+    margin-right: 10px !important;
+  }
+}
+
+img.info-icon,
+img.feature-info-icon {
+  margin-right: 15px;
+}
+
+@media (min-width: 480px) and (max-width: 991px) {
+  img.info-icon,
+  img.feature-info-icon {
+    margin-top: -10px;
+  }
+}
+
+div.feature-info-block {
+  width: 92%;
+}
+
+.ingest-icon,
+.schema-icon {
+  position: relative;
+  top: -4px;
+}
+
+@media (max-width: 767px) {
+  div.section.feature-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* bug in webflow css where this becomes 400px for some reason */
+div.feature-text-block-1a {
+  width: 100%;
+}
+
+.blog-text hr {
+  margin: 0;
+  display: none;
+}
+
+.blog-text hr {
+  margin: 0;
+  display: none;
+}
+
+.blog-text p {
+  margin: 20px 0px;
+}
+
+.blog-text p code {
+  font-size: 14px;
+  background-color: #f0f0f0;
+}
+
+.resourceTile {
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.resourceTile:hover {
+  border: 1px solid #1a70b4;
+}
+
+.blog-text pre {
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  padding: 8px;
+}

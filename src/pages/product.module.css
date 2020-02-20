@@ -1,0 +1,88 @@
+.featureRow {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.featureText {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 20px;
+}
+
+.featureAsset {
+  width: 50%;
+  display: inline-block;
+}
+
+.featureTitle {
+  min-width: 270px;
+  margin-top: 8px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.featureDescription {
+  margin-bottom: 30px;
+  opacity: 0.7;
+  font-size: 16px;
+  text-align: left;
+}
+
+.productDiagram {
+  max-width: 90vw;
+  margin-left: 0%;
+  text-align: left;
+  position: relative;
+  left: -3vw;
+}
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 767px) {
+  .featureText {
+    width: 100%;
+  }
+
+  .featureAsset {
+    width: 100%;
+  }
+
+  .blogCta {
+    width: 80% !important;
+    margin-left: 10% !important;
+  }
+
+  .whitePaperImage {
+    display: none;
+  }
+
+  .infoRow {
+    margin-bottom: 0px !important;
+  }
+
+  .subheaderText {
+    margin-bottom: -75px !important;
+  }
+
+  .productDiagram {
+    max-width: 90%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 479px) {
+}
+
+img.query-product-icon {
+  position: relative;
+  top: 3px;
+  margin-right: 12px;
+}
+
+img.ingest-product-icon {
+  position: relative;
+  top: -2px;
+}
