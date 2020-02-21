@@ -49,6 +49,10 @@
   .mobileSignUp {
     display: none;
   }
+
+  .mobileContactUs {
+    display: none !important;
+  }
 }
 
 @media (max-width: 991px) {

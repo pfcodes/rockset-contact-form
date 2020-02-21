@@ -193,7 +193,7 @@ class Header extends React.Component {
         >
           Docs &nbsp; <img src={newWindowIcon} style={{ height: '12px', marginTop: '-3px' }} />
         </a>
-        <a href="/contact-us" className="nav-link w-nav-link">
+        <a href="/contact-us" className={`nav-link w-nav-link ${styles.mobileContactUs}`}>
           Contact Us
         </a>
         <a
