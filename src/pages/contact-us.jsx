@@ -124,10 +124,6 @@ const WrappedContactUsForm = ({ handleSubmit }) => {
 
 const ContactUs = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const handleSubmit = values => {
-    submitDataToHubSpot(values);
-  };
-
   const submitDataToHubSpot = dataObject => {
     // https://developers.hubspot.com/docs/methods/forms/submit_form_v3
     const apiEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`;
@@ -140,6 +136,7 @@ const ContactUs = () => {
     // unaware of Rockset's browser support targets.
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
+      // TODO: Handle error state
       if (this.readyState == 4 && this.status == 200) {
         setFormSubmitted(true);
       }
@@ -164,7 +161,9 @@ const ContactUs = () => {
           {formSubmitted && (
             <div>Thank you for reaching out to sales. We'll be in touch in the next 24 hours.</div>
           )}
-          {!formSubmitted && <WrappedContactUsForm handleSubmit={handleSubmit} />}
+          {!formSubmitted && (
+            <WrappedContactUsForm handleSubmit={values => submitDataToHubSpot(values)} />
+          )}
         </div>
       </div>
     </div>
