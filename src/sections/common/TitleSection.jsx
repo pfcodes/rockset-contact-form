@@ -98,7 +98,11 @@ const HeaderContent = styled.div`
   }
 `;
 
-const HeaderBanner = styled.div`
+// Made this an export because not all pages (like the Contact Page)
+// will have contents in the banner. `TitleSecton` bundles in
+// unneeded elements.
+// - 2/22/19 - phil@auroradigit.al
+export const HeaderBanner = styled.div`
   height: 604px;
   background: linear-gradient(297.71deg, rgba(52, 50, 124, 0.9) 0.65%, #6B3596 54.6%, #9737AB 98.37%),
     url('${props => props.background}');
