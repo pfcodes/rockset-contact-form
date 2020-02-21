@@ -44,6 +44,10 @@
   background-color: #2f3338;
 }
 
+.ContactUsForm .ContactUsFormFieldError {
+  color: red;
+}
+
 /* Breakpoint: Tablet */
 /* Note: We may benefit from adding a third breakpoint, things look kind
    of squished on tablet
@@ -77,10 +81,6 @@
 
   .ContactUsForm > .ContactUsFormInlineFieldset > .ContactUsFormField:first-child {
     margin-right: 21px;
-  }
-
-  .ContactUsForm .ContactUsFormFieldError {
-    color: red;
   }
 
   .ContactUsForm > .ContactUsFormSubmitButton {
