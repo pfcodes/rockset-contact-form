@@ -15,6 +15,7 @@ const hubspotForm = {
 };
 
 const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
+  {/* `action` is included to provides fall back to standard HTTP form */}
   <form
     id="contact-form"
     method="POST"
@@ -35,7 +36,7 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
           type="text"
           id="firstname"
           name="firstname"
-          className={'w-input'}
+          className="w-input"
           value={values.firstname}
           onChange={handleChange}
           placeholder="First Name*"
@@ -134,9 +135,10 @@ const WrappedContactUsForm = ({ handleSubmit }) => {
 
 const ContactUs = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
+
   const submitDataToHubSpot = dataObject => {
     // https://developers.hubspot.com/docs/methods/forms/submit_form_v3
-    const apiEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`;
+
     let fields = [];
     for (let [name, value] of Object.entries(dataObject)) {
       fields.push({ name, value });
@@ -151,7 +153,8 @@ const ContactUs = () => {
         setFormSubmitted(true);
       }
     };
-    xhr.open('POST', apiEndpoint, true);
+
+    xhr.open('POST', `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({ fields }));
   };
