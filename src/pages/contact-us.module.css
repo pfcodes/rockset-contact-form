@@ -29,7 +29,7 @@
   flex-direction: column;
 }
 
-.ContactUsForm > .ContactUsFormTextArea {
+.ContactUsForm .ContactUsFormTextArea {
   resize: none;
 }
 
@@ -78,8 +78,8 @@
     display: inline-block;
   }
 
-  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem:last-child {
-    margin-left: 21px;
+  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem:first-child {
+    margin-right: 21px;
   }
 
   .ContactUsForm > .ContactUsFormSubmitButton {
