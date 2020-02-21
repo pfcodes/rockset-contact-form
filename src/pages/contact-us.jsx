@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet';
 import classNames from 'classnames';
 import SEO from '../components/seo';
 import Header from '../components/header';
-import TitleSection from '../sections/common/TitleSection';
+import { HeaderBanner } from '../sections/common/TitleSection';
 
 import styles from './contact-us.module.css';
 
 const ContactUs = () => {
-  const useHubSpotEmbeddedForm = true;
+  const embeddedFormMode = false;
   const handleFormSubmit = e => {
     e.preventDefault();
   };
@@ -28,12 +28,11 @@ const ContactUs = () => {
         description="Tell us about your use case, data size, and any other information we should know."
       />
       <Header />
-      {/* v-- This component is flawed, `customCta` should be an optional renderProp */}
-      <TitleSection customCta="Contact Us" />
+      <HeaderBanner />
       <div className={classNames('container', 'w-container', styles.ContactUsSection)}>
         <div className={styles.ContactUsCard}>
-          {useHubSpotEmbeddedForm && <form id="hubspot-embedded-contact-form"></form>}
-          {!useHubSpotEmbeddedForm && (
+          {embeddedFormMode && <form id="hubspot-embedded-contact-form"></form>}
+          {!embeddedFormMode && (
             <form id="contact-form" className={styles.ContactUsForm}>
               <h1 className={styles.ContactUsFormHeading}>Contact Sales</h1>
               <fieldset className={styles.ContactUsFormFieldset}>
