@@ -14,101 +14,103 @@ const hubspotForm = {
   guid: '6e75c59c-6fba-4507-a42b-1525ace4ea8c',
 };
 
-const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
+const ContactUsForm = ({ values, handleChange, handleSubmit }) => {
   {/* `action` is included to provides fall back to standard HTTP form */}
-  <form
-    id="contact-form"
-    method="POST"
-    action={`https://forms.hubspot.com/uploads/form/v2/${hubspotForm.portalId}/${hubspotForm.guid}`}
-    className={styles.ContactUsForm}
-    onSubmit={handleSubmit}
-  >
-    {/*
+  return (
+    <form
+      id="contact-form"
+      method="POST"
+      action={`https://forms.hubspot.com/uploads/form/v2/${hubspotForm.portalId}/${hubspotForm.guid}`}
+      className={styles.ContactUsForm}
+      onSubmit={handleSubmit}
+    >
+      {/*
         Chrome does not allow using fieldset as a flexbox container so [role="group"] is used
         instead (https://stackoverflow.com/questions/28078681/why-cant-fieldset-be-flex-containers)
     */}
-    <div role="group" className={styles.ContactUsFormInlineFieldset}>
-      <div className={styles.ContactUsFormField}>
-        <ErrorMessage name="firstname">
+      <div role="group" className={styles.ContactUsFormInlineFieldset}>
+        <div className={styles.ContactUsFormField}>
+          <ErrorMessage name="firstname">
+            {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+          </ErrorMessage>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            className="w-input"
+            value={values.firstname}
+            onChange={handleChange}
+            placeholder="First Name*"
+          />
+        </div>
+        <div className={styles.ContactUsFormField}>
+          <ErrorMessage name="lastname">
+            {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+          </ErrorMessage>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            className="w-input"
+            value={values.lastname}
+            onChange={handleChange}
+            placeholder="Last Name*"
+          />
+        </div>
+      </div>
+      <div role="group" className={styles.ContactUsFormInlineFieldset}>
+        <div className={styles.ContactUsFormField}>
+          <ErrorMessage name="company">
+            {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+          </ErrorMessage>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            className="w-input"
+            value={values.company}
+            onChange={handleChange}
+            placeholder="Company Name*"
+          />
+        </div>
+        <div className={styles.ContactUsFormField}>
+          <ErrorMessage name="email">
+            {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+          </ErrorMessage>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="w-input"
+            value={values.email}
+            onChange={handleChange}
+            placeholder="Company Email*"
+          />
+        </div>
+      </div>
+      <fieldset>
+        <ErrorMessage name="message">
           {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
         </ErrorMessage>
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          className="w-input"
-          value={values.firstname}
+        <textarea
+          id="message"
+          name="message"
+          className={classNames('w-input', styles.ContactUsFormTextArea)}
+          rows="6"
+          value={values.message}
           onChange={handleChange}
-          placeholder="First Name*"
+          placeholder="Tell us about your use case, data size, and any other information we should know.*"
         />
-      </div>
-      <div className={styles.ContactUsFormField}>
-        <ErrorMessage name="lastname">
-          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
-        </ErrorMessage>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          className="w-input"
-          value={values.lastname}
-          onChange={handleChange}
-          placeholder="Last Name*"
-        />
-      </div>
-    </div>
-    <div role="group" className={styles.ContactUsFormInlineFieldset}>
-      <div className={styles.ContactUsFormField}>
-        <ErrorMessage name="company">
-          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
-        </ErrorMessage>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          className="w-input"
-          value={values.company}
-          onChange={handleChange}
-          placeholder="Company Name*"
-        />
-      </div>
-      <div className={styles.ContactUsFormField}>
-        <ErrorMessage name="email">
-          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
-        </ErrorMessage>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          className="w-input"
-          value={values.email}
-          onChange={handleChange}
-          placeholder="Company Email*"
-        />
-      </div>
-    </div>
-    <fieldset>
-      <ErrorMessage name="message">
-        {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
-      </ErrorMessage>
-      <textarea
-        id="message"
-        name="message"
-        className={classNames('w-input', styles.ContactUsFormTextArea)}
-        rows="6"
-        value={values.message}
-        onChange={handleChange}
-        placeholder="Tell us about your use case, data size, and any other information we should know.*"
-      />
-    </fieldset>
-    <button
-      type="submit"
-      className={classNames('button', 'w-button', styles.ContactUsFormSubmitButton)}
-    >
-      Contact Me Within 24 Hours
-    </button>
-  </form>
-);
+      </fieldset>
+      <button
+        type="submit"
+        className={classNames('button', 'w-button', styles.ContactUsFormSubmitButton)}
+      >
+        Contact Me Within 24 Hours
+      </button>
+    </form>
+  );
+};
 
 const WrappedContactUsForm = ({ handleSubmit }) => {
   const FormWithFormik = withFormik({
@@ -154,7 +156,11 @@ const ContactUs = () => {
       }
     };
 
-    xhr.open('POST', `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`, true);
+    xhr.open(
+      'POST',
+      `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`,
+      true,
+    );
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({ fields }));
   };
