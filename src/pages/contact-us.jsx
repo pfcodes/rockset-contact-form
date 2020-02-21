@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { withFormik } from 'formik';
+import { withFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import SEO from '../components/seo';
@@ -14,7 +14,7 @@ const hubspotForm = {
   guid: '6e75c59c-6fba-4507-a42b-1525ace4ea8c',
 };
 
-const ContactUsForm = ({ values, touched, errors, handleChange, handleSubmit }) => (
+const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
   <form
     id="contact-form"
     className={styles.ContactUsForm}
@@ -22,47 +22,64 @@ const ContactUsForm = ({ values, touched, errors, handleChange, handleSubmit }) 
     action={`https://forms.hubspot.com/uploads/form/v2/${hubspotForm.portalId}/${hubspotForm.guid}`}
     onSubmit={handleSubmit}
   >
-    <fieldset className={styles.ContactUsFormFieldset}>
-      <input
-        type="text"
-        id="firstname"
-        name="firstname"
-        className={classNames('w-input', styles.ContactUsFormFieldsetItem)}
-        value={values.firstname}
-        onChange={handleChange}
-        placeholder="First Name*"
-      />
-      <input
-        type="text"
-        id="lastname"
-        name="lastname"
-        className={classNames('w-input', styles.ContactUsFormFieldsetItem)}
-        value={values.lastname}
-        onChange={handleChange}
-        placeholder="Last Name*"
-      />
-    </fieldset>
-    <fieldset className={styles.ContactUsFormFieldset}>
-      <input
-        type="text"
-        id="company"
-        name="company"
-        className={classNames('w-input', styles.ContactUsFormFieldsetItem)}
-        value={values.company}
-        onChange={handleChange}
-        placeholder="Company Name*"
-      />
-      <input
-        type="email"
-        id="email"
-        name="email"
-        className={classNames('w-input', styles.ContactUsFormFieldsetItem)}
-        value={values.email}
-        onChange={handleChange}
-        placeholder="Company Email*"
-      />
-    </fieldset>
+    {/*
+      Chrome does not allow using Fieldset as a flexbox container so [role="group"] is used
+     instead (https://stackoverflow.com/questions/28078681/why-cant-fieldset-be-flex-containers)
+    */}
+    <div role="group" className={styles.ContactUsFormFieldset}>
+      <div className={styles.ContactUsFormFieldsetItem}>
+        <ErrorMessage name="firstname" />
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          className={'w-input'}
+          value={values.firstname}
+          onChange={handleChange}
+          placeholder="First Name*"
+        />
+      </div>
+      <div className={styles.ContactUsFormFieldsetItem}>
+        <ErrorMessage name="lastname" />
+        <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          className="w-input"
+          value={values.lastname}
+          onChange={handleChange}
+          placeholder="Last Name*"
+        />
+      </div>
+    </div>
+    <div role="group" className={styles.ContactUsFormFieldset}>
+      <div className={styles.ContactUsFormFieldsetItem}>
+        <ErrorMessage name="company" />
+        <input
+          type="text"
+          id="company"
+          name="company"
+          className="w-input"
+          value={values.company}
+          onChange={handleChange}
+          placeholder="Company Name*"
+        />
+      </div>
+      <div className={styles.ContactUsFormFieldsetItem}>
+        <ErrorMessage name="email" />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          className="w-input"
+          value={values.email}
+          onChange={handleChange}
+          placeholder="Company Email*"
+        />
+      </div>
+    </div>
     <fieldset>
+      <ErrorMessage name="message" />
       <textarea
         id="message"
         name="message"
@@ -82,19 +99,56 @@ const ContactUsForm = ({ values, touched, errors, handleChange, handleSubmit }) 
   </form>
 );
 
-const WrappedContactUsForm = withFormik({
-  // Camelcase is not used because the built HubSpot uses all lowercase.
-  // Name was determined by first inspecting the HTML after first embedding
-  // the JavaScript form
-  mapPropsToValues: () => ({ firstname: '', lastname: '', company: '', email: '', message: '' }),
+const WrappedContactUsForm = ({ handleSubmit }) => {
+  const FormWithFormik = withFormik({
+    // Camelcase is not used because the built HubSpot uses all lowercase.
+    // Name was determined by first inspecting the HTML after first embedding
+    // the JavaScript form
+    mapPropsToValues: () => ({ firstname: '', lastname: '', company: '', email: '', message: '' }),
 
-  handleSubmit: values => {
-    alert(JSON.stringify(values, null, 2));
-    // submitDataToHubSpot(firstName, lastName, companyName, companyEmail, message);
-  },
-})(ContactUsForm);
+    validationSchema: Yup.object().shape({
+      firstname: Yup.string().required('Please enter your first name.'),
+      lastname: Yup.string().required('Please enter your last name.'),
+      company: Yup.string().required('Please enter your company name.'),
+      email: Yup.string()
+        .email('Please enter a valid e-mail address.')
+        .required('Please enter your company e-mail.'),
+      message: Yup.string().required('Please enter a message.'),
+    }),
+
+    handleSubmit,
+  })(ContactUsForm);
+
+  return <FormWithFormik />;
+};
 
 const ContactUs = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const handleSubmit = values => {
+    submitDataToHubSpot(values);
+  };
+
+  const submitDataToHubSpot = dataObject => {
+    // https://developers.hubspot.com/docs/methods/forms/submit_form_v3
+    const apiEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`;
+    let fields = [];
+    for (let [name, value] of Object.entries(dataObject)) {
+      fields.push({ name, value });
+    }
+
+    // XMLHttpRequest in use instead of fetch not used because I'm
+    // unaware of Rockset's browser support targets.
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        setFormSubmitted(true);
+      }
+    };
+    xhr.open('POST', apiEndpoint, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ fields }));
+  };
+
   return (
     <div>
       <SEO
@@ -107,25 +161,14 @@ const ContactUs = () => {
       <div className={classNames('container', 'w-container', styles.ContactUsSection)}>
         <div className={styles.ContactUsCard}>
           <h1 className={styles.ContactUsCardHeading}>Contact Sales</h1>
-          <WrappedContactUsForm />
+          {formSubmitted && (
+            <div>Thank you for reaching out to sales. We'll be in touch in the next 24 hours.</div>
+          )}
+          {!formSubmitted && <WrappedContactUsForm handleSubmit={handleSubmit} />}
         </div>
       </div>
     </div>
   );
-};
-
-const submitDataToHubSpot = (firstName, lastName, companyName, companyEmail, message) => {
-  // https://developers.hubspot.com/docs/methods/forms/submit_form_v3
-  const apiEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${hubspotForm.portalId}/${hubspotForm.guid}`;
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // Typical action to be performed when the document is ready:
-      console.log(JSON.parse(xhr.responseText));
-    }
-  };
-  xhr.open('POST', apiEndpoint, true);
-  xhr.send();
 };
 
 export default ContactUs;
