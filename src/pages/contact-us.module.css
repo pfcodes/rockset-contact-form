@@ -1,8 +1,6 @@
 .ContactUsSection {
   padding: 2em 0 3em 0;
-  /* border-bottom styling borrowed from
-    `.bottom-footer-block` element
-  */
+  /* border-bottom styling borrowed from `.bottom-footer-block` element */
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -23,7 +21,6 @@
   line-height: 48px;
 }
 
-/* Custom Form elements */
 .ContactUsForm {
   display: flex;
   flex-direction: column;
@@ -67,19 +64,23 @@
     line-height: 49px;
   }
 
-  .ContactUsForm > .ContactUsFormFieldset {
+  .ContactUsForm > .ContactUsFormInlineFieldset {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
   }
 
-  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem {
+  .ContactUsForm > .ContactUsFormInlineFieldset > .ContactUsFormField {
     width: 50%;
     display: inline-block;
   }
 
-  .ContactUsForm > .ContactUsFormFieldset > .ContactUsFormFieldsetItem:first-child {
+  .ContactUsForm > .ContactUsFormInlineFieldset > .ContactUsFormField:first-child {
     margin-right: 21px;
+  }
+
+  .ContactUsForm .ContactUsFormFieldError {
+    color: red;
   }
 
   .ContactUsForm > .ContactUsFormSubmitButton {

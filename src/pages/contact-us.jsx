@@ -17,18 +17,20 @@ const hubspotForm = {
 const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
   <form
     id="contact-form"
-    className={styles.ContactUsForm}
     method="POST"
     action={`https://forms.hubspot.com/uploads/form/v2/${hubspotForm.portalId}/${hubspotForm.guid}`}
+    className={styles.ContactUsForm}
     onSubmit={handleSubmit}
   >
     {/*
-      Chrome does not allow using Fieldset as a flexbox container so [role="group"] is used
-     instead (https://stackoverflow.com/questions/28078681/why-cant-fieldset-be-flex-containers)
+        Chrome does not allow using fieldset as a flexbox container so [role="group"] is used
+        instead (https://stackoverflow.com/questions/28078681/why-cant-fieldset-be-flex-containers)
     */}
-    <div role="group" className={styles.ContactUsFormFieldset}>
-      <div className={styles.ContactUsFormFieldsetItem}>
-        <ErrorMessage name="firstname" />
+    <div role="group" className={styles.ContactUsFormInlineFieldset}>
+      <div className={styles.ContactUsFormField}>
+        <ErrorMessage name="firstname">
+          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+        </ErrorMessage>
         <input
           type="text"
           id="firstname"
@@ -39,8 +41,10 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
           placeholder="First Name*"
         />
       </div>
-      <div className={styles.ContactUsFormFieldsetItem}>
-        <ErrorMessage name="lastname" />
+      <div className={styles.ContactUsFormField}>
+        <ErrorMessage name="lastname">
+          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+        </ErrorMessage>
         <input
           type="text"
           id="lastname"
@@ -52,9 +56,11 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
         />
       </div>
     </div>
-    <div role="group" className={styles.ContactUsFormFieldset}>
-      <div className={styles.ContactUsFormFieldsetItem}>
-        <ErrorMessage name="company" />
+    <div role="group" className={styles.ContactUsFormInlineFieldset}>
+      <div className={styles.ContactUsFormField}>
+        <ErrorMessage name="company">
+          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+        </ErrorMessage>
         <input
           type="text"
           id="company"
@@ -65,8 +71,10 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
           placeholder="Company Name*"
         />
       </div>
-      <div className={styles.ContactUsFormFieldsetItem}>
-        <ErrorMessage name="email" />
+      <div className={styles.ContactUsFormField}>
+        <ErrorMessage name="email">
+          {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+        </ErrorMessage>
         <input
           type="email"
           id="email"
@@ -79,7 +87,9 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
       </div>
     </div>
     <fieldset>
-      <ErrorMessage name="message" />
+      <ErrorMessage name="message">
+        {msg => <div className={styles.ContactUsFormFieldError}>{msg}</div>}
+      </ErrorMessage>
       <textarea
         id="message"
         name="message"
@@ -88,7 +98,7 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
         value={values.message}
         onChange={handleChange}
         placeholder="Tell us about your use case, data size, and any other information we should know.*"
-      ></textarea>
+      />
     </fieldset>
     <button
       type="submit"
@@ -101,9 +111,9 @@ const ContactUsForm = ({ values, handleChange, handleSubmit }) => (
 
 const WrappedContactUsForm = ({ handleSubmit }) => {
   const FormWithFormik = withFormik({
-    // Camelcase is not used because the built HubSpot uses all lowercase.
-    // Name was determined by first inspecting the HTML after first embedding
-    // the JavaScript form
+    // Camelcase is not used because the built HubSpot form uses all lowercase.
+    // This was discovered after injecting the embedded form and inspecting
+    // the HTML elements. Please keep these names in sync with the backend.
     mapPropsToValues: () => ({ firstname: '', lastname: '', company: '', email: '', message: '' }),
 
     validationSchema: Yup.object().shape({
