@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styles from './header.module.css';
 import newWindowIcon from '../images/new-window.svg';
 
@@ -194,6 +193,9 @@ class Header extends React.Component {
         >
           Docs &nbsp; <img src={newWindowIcon} style={{ height: '12px', marginTop: '-3px' }} />
         </a>
+        <a href="/contact-us" className="nav-link w-nav-link">
+          Contact Us
+        </a>
         <a
           href="https://console.rockset.com/overview"
           target="_blank"
@@ -224,9 +226,15 @@ class Header extends React.Component {
             }
           }}
           href="#"
-          className="nav-link w-nav-link"
+          className={`nav-link w-nav-link ${styles.loginButton}`}
         >
-          Login
+          Login{' '}
+          <img
+            src={require('../images/circle-arrow.svg')}
+            width="12"
+            height="12"
+            style={{ marginLeft: '5px' }}
+          />
         </a>
         <a
           onClick={() => {

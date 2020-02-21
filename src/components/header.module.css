@@ -75,3 +75,9 @@
     display: none !important;
   }
 }
+
+.loginButton {
+  color: #23a03e !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
