@@ -17,15 +17,16 @@
   transition: padding 0.2s, margin 0.2s;
 }
 
-.ContactUsForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.ContactUsForm > .ContactUsFormHeading {
+.ContactUsCard > .ContactUsCardHeading {
   text-align: center;
   font-size: 32px;
   line-height: 48px;
+}
+
+/* Custom Form elements */
+.ContactUsForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .ContactUsForm > .ContactUsFormTextArea {
@@ -61,7 +62,7 @@
     margin-top: -30em;
   }
 
-  .ContactUsForm > .ContactUsFormHeading {
+  .ContactUsCard > .ContactUsCardHeading {
     font-size: 39px;
     line-height: 49px;
   }
